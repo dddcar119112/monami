@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57a4c67da4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hamburger-menu.css">
+    <link rel="stylesheet" href="plus_btn.css">
+    <link rel="stylesheet" href="가로스크롤.css">
+    <title>MONAMI</title>
+    <style>
+        *{ margin: 0 auto; padding: 0; font-family: Arial, Helvetica, sans-serif;}
+
+        html,body{
+            scroll-behavior: smooth;
+            height: auto;
+        }
+
+        ul{ list-style: none; margin: 0; padding: 0;}
+
+        i{ font-size: 1.5rem; color: #a0a0a0;}
+
+        a{ display: block; margin: 0; padding: 0; text-decoration: none;}
+
+
+        /*css 로 옮기기*/
+        
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        /** 햄버거메뉴 **/
+    $(function(){
+        $(".hamburger-wrap").click(function(){
+            $(this).toggleClass("active");
+            $(".sidebar").toggleClass("on");
+        });
+        $(".side-ul-001 li a").click(function(){
+            $(".sidebar").removeClass("on");
+            $(".hamburger-wrap").removeClass("active");
+        });
+    });
+
+    /**가로스크롤 선택버튼 색 효과**/
+    $(function(){
+        /**펜**/
+        $(".box_check1").click(function(){
+            $(".box_check1").addClass("check1");/**/
+            $(".box_check1").removeClass("check2");/**/
+            $(".box_check2").removeClass("check1");/**/
+            $(".box_check2").addClass("check2");/**/
+            $(".box_check3").removeClass("check1");/**/
+            $(".box_check3").addClass("check2");/**/
+            $(".box_check4").removeClass("check1");/**/
+            $(".box_check4").addClass("check2");/**/
+        });
+        /**마카**/
+        $(".box_check2").click(function(){
+            $(".box_check1").removeClass("check1");/**/
+            $(".box_check1").addClass("check2");/**/
+            $(".box_check2").addClass("check1");/**/
+            $(".box_check2").removeClass("check2");/**/
+            $(".box_check3").removeClass("check1");/**/
+            $(".box_check3").addClass("check2");/**/
+            $(".box_check4").removeClass("check1");/**/
+            $(".box_check4").addClass("check2");/**/
+        });
+        /**형광펜**/
+        $(".box_check3").click(function(){
+            $(".box_check1").removeClass("check1");/**/
+            $(".box_check1").addClass("check2");/**/
+            $(".box_check2").removeClass("check1");/**/
+            $(".box_check2").addClass("check2");/**/
+            $(".box_check3").addClass("check1");/**/
+            $(".box_check3").removeClass("check2");/**/
+            $(".box_check4").removeClass("check1");/**/
+            $(".box_check4").addClass("check2");/**/
+        });
+        /**미술용품**/
+        $(".box_check4").click(function(){
+            $(".box_check1").removeClass("check1");/**/
+            $(".box_check1").addClass("check2");/**/
+            $(".box_check2").removeClass("check1");/**/
+            $(".box_check2").addClass("check2");/**/
+            $(".box_check3").removeClass("check1");/**/
+            $(".box_check3").addClass("check2");/**/
+            $(".box_check4").addClass("check1");/**/
+            $(".box_check4").removeClass("check2");/**/
+        });
+    });
+
+    /** 가로스크롤 선택버튼 클릭 변화**/
+    /*on 홀수=block  on 짝수=none*/
+    $(function(){
+        /**펜**/
+        $(".box_check1").click(function(){
+            $(".scroll_wrap1").addClass("on1");/**/
+            $(".scroll_wrap1").removeClass("on2");/**/
+            $(".scroll_wrap3").removeClass("on3");/**/
+            $(".scroll_wrap3").addClass("on4");/**/
+            $(".scroll_wrap5").removeClass("on5");/**/
+            $(".scroll_wrap5").addClass("on6");/**/
+            $(".scroll_wrap7").removeClass("on7");/**/
+            $(".scroll_wrap7").addClass("on8");/**/
+        });
+        /**마카**/
+        $(".box_check2").click(function(){
+            $(".scroll_wrap1").removeClass("on1");/**/
+            $(".scroll_wrap1").addClass("on2");/**/
+            $(".scroll_wrap3").addClass("on3");/**/
+            $(".scroll_wrap3").removeClass("on4");/**/
+            $(".scroll_wrap5").removeClass("on5");/**/
+            $(".scroll_wrap5").addClass("on6");/**/
+            $(".scroll_wrap7").removeClass("on7");/**/
+            $(".scroll_wrap7").addClass("on8");/**/
+        });
+        /**형광펜**/
+        $(".box_check3").click(function(){
+            $(".scroll_wrap1").removeClass("on1");/**/
+            $(".scroll_wrap1").addClass("on2");/**/
+            $(".scroll_wrap3").removeClass("on3");/**/
+            $(".scroll_wrap3").addClass("on4");/**/
+            $(".scroll_wrap5").addClass("on5");/**/
+            $(".scroll_wrap5").removeClass("on6");/**/
+            $(".scroll_wrap7").removeClass("on7");/**/
+            $(".scroll_wrap7").addClass("on8");/**/
+        });
+        /**미술용품**/
+        $(".box_check4").click(function(){
+            $(".scroll_wrap1").removeClass("on1");/**/
+            $(".scroll_wrap1").addClass("on2");/**/
+            $(".scroll_wrap3").removeClass("on3");/**/
+            $(".scroll_wrap3").addClass("on4");/**/
+            $(".scroll_wrap5").removeClass("on5");/**/
+            $(".scroll_wrap5").addClass("on6");/**/
+            $(".scroll_wrap7").addClass("on7");/**/
+            $(".scroll_wrap7").removeClass("on8");/**/
+        });
+    });
+
+
+    /**가로스크롤 드래그**/
+
+    /**펜**/
+    $(document).ready( function(){
+			let Move = false;
+			let startX = 0;
+			let scrollLeft = 0;
+			let slider = document.querySelector(".scroll_wrap1");
+
+			slider.addEventListener("mousedown", function(e){
+				Move = true;
+				startX = e.pageX - slider.offsetLeft;
+				scrollLeft = slider.scrollLeft;
+			});
+
+			slider.addEventListener("mouseleave", function(){
+				Move = false;
+			});
+
+			slider.addEventListener("mouseup", function(){
+				Move = false;
+			});
+
+			slider.addEventListener("mousemove", function(e){
+				if( Move )
+				{
+					const x = e.pageX - slider.offsetLeft;
+					const walk = x - startX;
+					slider.scrollLeft = scrollLeft - walk;
+				}
+			});
+		});
+
+        /**마카**/
+        $(document).ready( function(){
+			let Move = false;
+			let startX = 0;
+			let scrollLeft = 0;
+			let slider = document.querySelector(".scroll_wrap3");
+
+			slider.addEventListener("mousedown", function(e){
+				Move = true;
+				startX = e.pageX - slider.offsetLeft;
+				scrollLeft = slider.scrollLeft;
+			});
+
+			slider.addEventListener("mouseleave", function(){
+				Move = false;
+			});
+
+			slider.addEventListener("mouseup", function(){
+				Move = false;
+			});
+
+			slider.addEventListener("mousemove", function(e){
+				if( Move )
+				{
+					const x = e.pageX - slider.offsetLeft;
+					const walk = x - startX;
+					slider.scrollLeft = scrollLeft - walk;
+				}
+			});
+		});
+
+        /**형광펜은 이미지 4개라 제외**/
+
+        /**미술용품**/
+        $(document).ready( function(){
+			let Move = false;
+			let startX = 0;
+			let scrollLeft = 0;
+			let slider = document.querySelector(".scroll_wrap7");
+
+			slider.addEventListener("mousedown", function(e){
+				Move = true;
+				startX = e.pageX - slider.offsetLeft;
+				scrollLeft = slider.scrollLeft;
+			});
+
+			slider.addEventListener("mouseleave", function(){
+				Move = false;
+			});
+
+			slider.addEventListener("mouseup", function(){
+				Move = false;
+			});
+
+			slider.addEventListener("mousemove", function(e){
+				if( Move )
+				{
+					const x = e.pageX - slider.offsetLeft;
+					const walk = x - startX;
+					slider.scrollLeft = scrollLeft - walk;
+				}
+			});
+		});
+    </script>
+</head>
+<body>
+    <!-- header part -->
+    <header>
+        <!-- 상단 고정 메뉴바 -->
+        <div id="h-wrap">
+            <!-- hr기준 첫번쨰줄 -->
+            <div class="h-wrap-001">
+                <ul class="h-u1">
+                    <li>
+                        <ul class="h-u1-u1">
+                            <li>
+                                <div class="h-selectBox">
+                                    <select name="KOR" id="h-select" selected>
+                                        <option value="KOR">KOR</option>
+                                        <option value="ENG">ENG</option>
+                                    </select>
+                                </div>
+                            </li>
+                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa-solid fa-camera-retro"></i></a></li>
+                        </ul>
+                    </li>
+                    <li></li>
+                    <li>
+                        <ul class="h-u1-u2">
+                            <li><a href="#">HOME</a></li>
+                            <li>|</li>
+                            <li><a href="#">SITE MAP</a></li>
+                            <li>|</li>
+                            <li><a href="#">CONTACT US</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- hr기준 첫번쨰줄 마감-->
+            <hr>
+            <!-- hr기준 두번쨰줄 -->
+            <div class="h-wrap-002">
+                <ul class="h-u2">
+                    <li><img src="img/logo.jpg" alt="logo"></li>
+                    <li>
+                        <ul class="h-u2-u1">
+                            <li><a href="#">모나미소개</a>
+                                <ul class="h-u2-u1-001">
+                                    <li><a href="#">CEO 메시지</a></li>
+                                    <li><a href="#">회사정보</a></li>
+                                    <li><a href="#">회사연혁</a></li>
+                                    <li><a href="#">윤리강령</a></li>
+                                    <li><a href="#">투자정보</a></li>
+                                    <li><a href="#">CI</a></li>
+                                    <li><a href="#">채용정보</a></li>
+                                    <li><a href="#">찾아오시는 길</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">모나미제품</a>
+                                <ul class="h-u2-u1-001">
+                                    <li><a href="#">펜</a></li>
+                                    <li><a href="#">마카</a></li>
+                                    <li><a href="#">형광펜</a></li>
+                                    <li><a href="#">미술용품</a></li>
+                                    <li><a href="#">기타</a></li>
+                                    <li><a href="#">카탈로그</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">NEWS & VIDEO</a>
+                                <ul class="h-u2-u1-001">
+                                    <li><a href="#">보도자료</a></li>
+                                    <li><a href="#">동영상자료</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">모나미 미술대회</a>
+                                <ul class="h-u2-u1-001">
+                                    <li><a href="#">미술대회 소개</a></li>
+                                    <li><a href="#">수상작 발표</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">고객지원</a>
+                                <ul class="h-u2-u1-001">
+                                    <li><a href="#">자주묻는질문</a></li>
+                                    <li><a href="#">문의하기</a></li>
+                                    <li><a href="#">이벤트</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">기업 구매 / 개발</a>
+                                <ul class="h-u2-u1-001">
+                                    <li><a href="#">대량 구매 문의</a></li>
+                                    <li><a href="#">기업 및 단체 구매</a></li>
+                                    <li><a href="#">산업용 맞춤 제품개발</a></li>
+                                </ul>   
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="h-u2-u2">
+                            <li><a href="#"><img src="img/btn_search.gif" alt="btn_search"></a></li>
+                            <!-- 햄버거 메뉴 -->
+                            <li>
+                                <div class="mobile_btn">
+                                    <div class="hamburger-wrap">
+                                        <div class="hamburger">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </div>
+                                    <div class="sidebar">
+                                        <ul class="side-ul">
+                                            <li><a href="#">모나미소개</a>
+                                                <ul class="side-ul-001">
+                                                    <li><a href="#">CEO 메시지</a></li>
+                                                    <li><a href="#">회사정보</a></li>
+                                                    <li><a href="#">회사연혁</a></li>
+                                                    <li><a href="#">윤리강령</a></li>
+                                                    <li><a href="#">투자정보</a></li>
+                                                    <li><a href="#">CI</a></li>
+                                                    <li><a href="#">채용정보</a></li>
+                                                    <li><a href="#">찾아오시는 길</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">모나미제품</a>
+                                                <ul class="side-ul-001">
+                                                    <li><a href="#">펜</a></li>
+                                                    <li><a href="#">마카</a></li>
+                                                    <li><a href="#">형광펜</a></li>
+                                                    <li><a href="#">미술용품</a></li>
+                                                    <li><a href="#">기타</a></li>
+                                                    <li><a href="#">카탈로그</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">NEWS & VIDEO</a>
+                                                <ul class="side-ul-001">
+                                                    <li><a href="#">보도자료</a></li>
+                                                    <li><a href="#">동영상자료</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">모나미 미술대회</a>
+                                                <ul class="side-ul-001">
+                                                    <li><a href="#">미술대회 소개</a></li>
+                                                    <li><a href="#">수상작 발표</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">고객지원</a>
+                                                <ul class="side-ul-001">
+                                                    <li><a href="#">자주묻는질문</a></li>
+                                                    <li><a href="#">문의하기</a></li>
+                                                    <li><a href="#">이벤트</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">기업 구매 / 개발</a>
+                                                <ul class="side-ul-001">
+                                                    <li><a href="#">대량 구매 문의</a></li>
+                                                    <li><a href="#">기업 및 단체 구매</a></li>
+                                                    <li><a href="#">산업용 맞춤 제품개발</a></li>
+                                                </ul>   
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 햄버거 메뉴 마감 -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- hr기준 두번쨰줄 마감-->
+        </div>
+        <!-- 상단 고정 메뉴바 마감 -->
+    </header>
+
+
+    <!-- section part -->
+    <section>
+        <div id="s-wrap1">
+            <div class="s-wrap1-001"></div>
+        </div>
+    </section>
+
+
+    <!-- section part -->
+    <section>
+        <div id="s-wrap2">
+            <div class="s-wrap2-001">
+                <ul class="s-u2-1">
+                    <li>
+                        <ul class="s-u2-u1">
+                            <li><h1>NEW <br> ARRIVALS </h1></li>
+                            <li><div class="s-u2-u1-line"></div></li>
+                            <li><p>가장 먼저 만나는 설레는 기다림</p></li>
+                            <li>
+                                <a href="#">
+                                    <div class="product-1">
+                                        <div class="product-1-in">
+                                            <div class="product-wrap">
+                                            <ul>
+                                                <li><p>PEN</p></li>
+                                                <li><h1>FX ZETA C3</h1></li>
+                                                <li>
+                                                    <div class="plus_contain">
+                                                        <div class="plusbtn-wrap">
+                                                            <div class="plusbtn">
+                                                                <span></span>
+                                                                <span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="product-2">
+                                <div class="product-2-in">
+                                    <div class="product-wrap">
+                                    <ul>
+                                        <li><p>NOTE</p></li>
+                                        <li><h1>지퀀스</h1></li>
+                                        <li>
+                                            <div class="plus_contain">
+                                                <div class="plusbtn-wrap">
+                                                    <div class="plusbtn">
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="s-u2-2">
+                    <li>
+                        <a href="#">
+                            <div class="product-3">
+                                <div class="product-3-in">
+                                    <div class="product-wrap">
+                                    <ul>
+                                        <li><p>SHARP</p></li>
+                                        <li><h1>제니스7샤프</h1></li>
+                                        <li>
+                                            <div class="plus_contain">
+                                                <div class="plusbtn-wrap">
+                                                    <div class="plusbtn">
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="product-4">
+                                <div class="product-4-in">
+                                    <div class="product-wrap">
+                                    <ul>
+                                        <li><p>FOUNTAIN PEN</p></li>
+                                        <li><h1>153 아이디 만년필</h1></li>
+                                        <li>
+                                            <div class="plus_contain">
+                                                <div class="plusbtn-wrap">
+                                                    <div class="plusbtn">
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="product-5">
+                                <div class="product-5-in">
+                                    <div class="product-wrap">
+                                    <ul>
+                                        <li><p>PREMIUM PEN</p></li>
+                                        <li><h1>153 리스펙트 리파인</h1></li>
+                                        <li>
+                                            <div class="plus_contain">
+                                                <div class="plusbtn-wrap">
+                                                    <div class="plusbtn">
+                                                        <span></span>
+                                                        <span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- section part -->
+    <section>
+        <div id="s-wrap3">
+            <div class="s-wrap3-001">
+                <ul class="s-u3">
+                    <li><h1>BEST PRODUCT</h1></li>
+                    <li><div class="s-u3-line"></div></li>
+                    <li><p>언제 어디서나 생활 속에 함께하는 모나미</p></li>
+                    <li>
+                        <ul class="s-u3-u1">
+                            <li><div class="s3-click_box box_check1">펜</div></li>
+                            <li><div class="s3-click_box box_check2">마카</div></li>
+                            <li><div class="s3-click_box box_check3">형광펜</div></li>
+                            <li><div class="s3-click_box box_check4">미술용품</div></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="s-u3-u2">
+                            <!-- 일반 펜 -->
+                            <li>
+                                <div class="scroll_wrap1">
+                                    <div class="scroll_wrap2">
+                                        <ul>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen1">
+                                                    <div class="box1_contain">
+                                                        <p>프리미엄펜</p>
+                                                        <h3>153 리스펙트 리파인</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen2">
+                                                    <div class="box1_contain">
+                                                        <p>만년필</p>
+                                                        <h3>153 아이디 만년필</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen3">
+                                                    <div class="box1_contain">
+                                                        <p>유성볼펜</p>
+                                                        <h3>FX ZETA C3</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen4">
+                                                    <div class="box1_contain">
+                                                        <p>유성볼펜</p>
+                                                        <h3>제니스7</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen5">
+                                                    <div class="box1_contain">
+                                                        <p>만년필</p>
+                                                        <h3>153 네오 만년필 EF</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen6">
+                                                    <div class="box1_contain">
+                                                        <p>FX 153</p>
+                                                        <h3>FX 153</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen7">
+                                                    <div class="box1_contain">
+                                                        <p>유성볼펜</p>
+                                                        <h3>FX ZETA</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen8">
+                                                    <div class="box1_contain">
+                                                        <p>프리미엄펜</p>
+                                                        <h3>153 블랙 & 화이트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen9">
+                                                    <div class="box1_contain">
+                                                        <p>프리미엄펜</p>
+                                                        <h3>153 골드</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box1_wrap">
+                                                <div class="box1 pen10">
+                                                    <div class="box1_contain">
+                                                        <p>프리미엄펜</p>
+                                                        <h3>153 아이디</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- 마카 펜 -->
+                            <li>
+                                <div class="scroll_wrap3">
+                                    <div class="scroll_wrap4">
+                                        <ul>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca1">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>사인펜 슈퍼 파스텔 12색</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca2">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>프러스펜 3000 피그먼트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca3">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>라이브 칼라(화이트 축)</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca4">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>프러스펜 3000 60색 세트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca5">
+                                                    <div class="box2_contain">
+                                                        <p>워터브러쉬</p>
+                                                        <h3>워터 리얼 브러쉬</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca6">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>컬러 리얼 브러쉬</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca7">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>붓펜 12색 세트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca8">
+                                                    <div class="box2_contain">
+                                                        <p>수성펜</p>
+                                                        <h3>컬러 트윈 브러쉬</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca9">
+                                                    <div class="box2_contain">
+                                                        <p>생활마카</p>
+                                                        <h3>세라믹마카 480/482</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box2_wrap">
+                                                <div class="box2 maca10">
+                                                    <div class="box2_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>라이브칼라 DIY</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                        </ul>
+                                    </div>
+                                </div>               
+                            </li>
+                            <!-- 형광펜 -->
+                            <li>
+                                <div class="scroll_wrap5">
+                                    <div class="scroll_wrap6">
+                                        <ul>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box3_wrap">
+                                                <div class="box3 hpen1">
+                                                    <div class="box3_contain">
+                                                        <p>형광펜</p>
+                                                        <h3>에센티 트윈</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box3_wrap">
+                                                <div class="box3 hpen2">
+                                                    <div class="box3_contain">
+                                                        <p>형광펜</p>
+                                                        <h3>에센티 브라이트/소프트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box3_wrap">
+                                                <div class="box3 hpen3">
+                                                    <div class="box3_contain">
+                                                        <p>형광펜</p>
+                                                        <h3>에센티스틱 브라이트/소프트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box3_wrap">
+                                                <div class="box3 hpen4">
+                                                    <div class="box3_contain">
+                                                        <p>형광펜</p>
+                                                        <h3>에딩 슈퍼 형광펜 600</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="scroll_wrap7">
+                                    <div class="scroll_wrap8">
+                                        <ul>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art1">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>사인펜 슈퍼 파스텔 12색</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art2">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>프러스펜 3000 피그먼트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art3">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>라이브 칼라(화이트 축)</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art4">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>프러스펜 3000 60색 세트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art5">
+                                                    <div class="box4_contain">
+                                                        <p>워터브러쉬</p>
+                                                        <h3>워터 리얼 브러쉬</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art6">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>컬러 리얼 브러쉬</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art7">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>붓펜 12색 세트</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art8">
+                                                    <div class="box4_contain">
+                                                        <p>수성펜</p>
+                                                        <h3>컬러 트윈 브러쉬</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art9">
+                                                    <div class="box4_contain">
+                                                        <p>생활마카</p>
+                                                        <h3>세라믹마카 480/482</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                            <li><a href="javascript:;" draggable="false">
+                                                <div class="box4_wrap">
+                                                <div class="box4 art10">
+                                                    <div class="box4_contain">
+                                                        <p>수성마카</p>
+                                                        <h3>라이브칼라 DIY</h3>
+                                                    </div>
+                                                </div></div></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><hr></li>
+                    <li><p>DRAG & SCROLL</p></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- section (video) part -->
+    <section>
+        <div id="s-wrap4">
+            <div class="s-wrap4-001">
+                <video src="monami_brand_web_60.mp4" muted autoplay playsinline loop></video>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- section part -->
+    <section>
+        <div id="s-wrap5">
+            <div class="s-wrap5-001">
+                <div class="s-wrap5-001-1">
+                    <ul class="s-u5">
+                        <li>
+                            <ul class="s-u5-1">
+                                <li>
+                                    <ul class="s-u5-1-in1">
+                                        <li><h1>MONAMI NEWS</h1></li>
+                                        <li></li>
+                                        <li><a href="#">MORE</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <ul class="s-u5-1-in2">
+                                        <li><a href="#"><div class="in2-box"></div></a></li>
+                                        <li><a href="#">
+                                            <h3>모나미 X 취(CHI), 한국의 잉크 ‘수묵’ 공간 ..</h3>
+                                            <p>모나미 X 취(CHI), 한국의 잉크 ‘수묵’ 공간 협업 전시- 이달 29일까지 모나미 컨셉스토어 성수점에서 한국적인 ..</p>
+                                        </a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">2023-12-18</a></li>
+                                <hr>
+                                <li><a href="#">- 모나미, 2024년 갑진년 '청룡의 해' 맞아 '153 행운을 드려용' 한정판 .. <span>2023-12-13</span></a></li>
+                                <li><a href="#">- 모나미 '제46회 모나미 모나르떼 어린이 미술대회' 수상작 발표 <span>2023-11-01</span></a></li>
+                                <li><a href="#">- 모나미, 연말연시 맞아 '크리스마스 포장지 꾸미기' 원데이클래.. <span>2023-10-25</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="s-u5_nt-2_box">
+                                <img src="img/연필체크_대지 1.png" alt="체크마크 일러스트"><br><br>
+                                <h1>INQUIRY</h1><br>
+                                <p>언제나 소중한 의견에 귀 기울이겠습니다. <br> 궁금한 사항은 문의하세요.</p>
+                                <a href="#"><div class="s-u5_btn">INQUIRY NOW</div></a>
+                            </div>
+                        </li>
+                        <li></li>
+                    </ul>
+                </div>
+                
+                <hr>
+
+                <ul class="s-u5_2">
+                    <li><a href="#"><div class="banner_box bn_1"></div></a></li>
+                    <li><a href="#"><div class="banner_box bn_2"></div></a></li>
+                    <li><a href="#"><div class="banner_box bn_3"></div></a></li>
+                    <li><a href="#"><div class="banner_box bn_4"></div></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- footer part -->
+    <footer>
+        <div id="f-wrap">
+            <div class="f-wrap-001">
+                <ul class="f-u1">
+                    <li>
+                        <ul class="f-u1-1">
+                            <li><div class="f-logo"></div></li>
+                            <li></li>
+                            <li><a href="#">회사소개</a></li>
+                            <li>|</li>
+                            <li><a href="#">개인정보처리방침</a></li>
+                            <li>|</li>
+                            <li><a href="#">이메일무단수집거부</a></li>
+                        </ul>
+                    </li>
+
+                    <hr>
+
+                    <li>
+                        <ul class="f-u1-2">
+                            <li>
+                                <ul class="f-u1-2_in1">
+                                    <li><p>INFO</p></li>
+                                    <li><span>ADDRESS : 경기도 용인시 수지구 손곡로 17 | TEL : 031-216-0153 | FAX : 031-270-5154</span></li>
+                                    <li><span>COPYRIGHT(C) 2017 MONAMI.CO.,LTD. ALL RIGHTS RESERVED.</span></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="f-u1-2_in2">
+                                    <li><p>CUSTOMER CENTER</p></li>
+                                    <li>080-022-0153</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="selectBox">
+                                <select name="FAMILY SITE" id="select">
+                                    <option disabled selected>FAMILY SITE </option>
+                                    <option value="apple">모나미몰</option>
+                                    <option value="orange">모나르떼</option>
+                                    <option value="grape">모나미 컨셉스토어</option>
+                                    <option value="melon">주식회사 항소</option>
+                                </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
